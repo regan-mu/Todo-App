@@ -1,0 +1,176 @@
+body {
+    background: #000;
+    font-family: 'Montserrat';
+}
+
+.navbar img {
+    width: 4rem;
+    height: 4rem;
+}
+.list {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    padding: 0.5rem 0 2rem;
+}
+.list h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: "Montserrat-Bold";
+    font-weight: bolder;
+    color: #34B3F1;
+}
+.list .todo {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    border: 0.05px dashed #34B3F1;
+    margin: 0 auto;
+    text-align: center;
+}
+.list .todo .response {
+    color: #34B3F1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    font-style: italic;
+}
+.list .todo .carousel {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.list .todo .carousel .carousel-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(0,0,0,0.7) 43%, rgba(0,0,0,0.7) 100%),
+                url('/static/img/bg.jpg');
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+}
+.list .todo .carousel .carousel-inner .carousel-item {
+    height: auto;
+    padding: 2rem 0;
+}
+.list .todo .todo-card {
+    width: 80%;
+    position: relative;
+    height: 100%;
+    margin: 0 auto;
+    color: #F15412;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.list .todo .todo-card .todo-title {
+    font-size: 1.7rem;
+    font-family: 'Montserrat-Bold';
+    font-weight: bolder;
+    padding: 0 0 0.5rem;
+}
+.list .todo .todo-card .todo-text {
+    font-size: 0.9rem;
+    font-weight: light
+}
+.list .todo .todo-card .btn {
+    color: #F15412;
+    border: 0.5px solid #F15412;
+}
+
+
+/*--------------- Add List Page Styling --------------*/
+#main {
+    position: relative;
+    height: 75vh;
+    padding: 1rem;
+}
+#main .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#main .container .outer-form {
+    width: 50%;
+    padding: 2rem;
+    border: 2px solid #34B3F1;
+}
+#main .container .outer-form label {
+    color: #34B3F1;
+}
+#main .container .outer-form input:nth-child(2) {
+    background: #D6D6D6;
+}
+#main .container .outer-form textarea {
+    background: #D6D6D6;
+}
+
+
+/*---------- To Do Page Styling --------*/
+#todo {
+    position: relative;
+    height: 75vh;
+    width: 100%;
+    padding: 2rem;
+    color: #EEEEEE;
+}
+
+#todo .container-fluid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 2rem;
+}
+#todo .ongoing {
+    width: 100%;
+    padding: 1rem;
+    border:
+}
+#todo .ongoing hr {
+    background: #909090;
+    height: 0.03px;
+}
+#todo .ongoing .top {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 3px double #909090;
+    margin-bottom: 2rem;
+}
+#todo .ongoing h3 {
+    color: #34B3F1;
+}
+#todo .ongoing a {
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: #34B3F1;
+}
+#todo .completed {
+    border: 0.5px double #909090;
+    padding: 1rem;
+}
+#todo .completed h4 {
+    margin-bottom: 2rem;
+    color: #34B3F1;
+}
+
+/* FORM ERRORS STYLES*/
+form .has-error input {
+    border: 1px solid red;
+}
+form .has-error textarea {
+    border: 1px solid red;
+}
+form .has-error label {
+    color: red;
+}
+form .help-block {
+    font-size: 0.9rem;
+    color: red;
+}
+
