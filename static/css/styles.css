@@ -145,18 +145,38 @@ body {
 #todo .ongoing h3 {
     color: #34B3F1;
 }
+#todo .ongoing .task {
+    display: flex;
+    justify-content: space-between;
+}
+
 #todo .ongoing a {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     text-decoration: none;
     color: #34B3F1;
+}
+#todo .ongoing .task .delete a {
+    color: red;
+    font-size: 0.8rem;
+}
+#todo .ongoing .add {
+    border-right: 2px solid #34B3F1;
+    padding-right: 2rem;
+    color: green;
+}
+#todo .ongoing .rem {
+    padding-left: 2rem;
+    color: red;
 }
 #todo .completed {
     border: 0.5px double #909090;
     padding: 1rem;
 }
 #todo .completed h4 {
-    margin-bottom: 2rem;
     color: #34B3F1;
+}
+#todo .completed p {
+    margin-bottom: 2rem;
 }
 
 /* FORM ERRORS STYLES*/

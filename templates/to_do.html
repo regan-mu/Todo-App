@@ -20,10 +20,7 @@
     <section id="todo">
         <div class="container-fluid">
             <div class="ongoing">
-                <div class="top">
-                    <h3>ToDo Tasks</h3>
-                    <a href="{{ url_for('add_task', todo_id=todo_id) }}">+ Add Task</a>
-                    {% with messages=get_flashed_messages(with_categories=true) %}
+                {% with messages=get_flashed_messages(with_categories=true) %}
                         {% if messages %}
                             {% for category, message in messages %}
                                 <div class="alert alert-{{category}} role='alert' alert-dismissible show">
@@ -32,15 +29,21 @@
                             {% endfor %}
                         {% endif %}
                     {% endwith %}
+                <div class="top">
+                    <h3>ToDo Tasks</h3>
+                    <div class="add-del">
+                        <a class="add" href="{{ url_for('add_task', todo_id=todo_id) }}">+ Add Task</a>
+                        <a class="rem" href="{{ url_for('delete_list', list_id=todo_id) }}">- Delete List</a>
+                    </div>
                 </div>
                 {% if tasks %}
                     {% for task in tasks %}
                         {% if task.completed == False %}
                             <p class="task">
-                                <a href="{{ url_for('complete_task', task_id=task.id) }}" class="mr-4"><i class="fa fa-square-o"></i></a>
-                                <span class="mr-3">{{ task.task_title }}</span>
-                                <span class="mr-3">{{ task.due_date.strftime('%d-%m-%Y') }}</span>
-                                <span class="mr-3">{{ task.due_time.strftime('%H:%M')  }}</span>
+                                <span><a href="{{ url_for('complete_task', task_id=task.id) }}" class="mr-4"><i class="fa fa-square-o"></i></a>{{ task.task_title }}</span>
+                                <span>{{ task.due_date.strftime('%d-%m-%Y') }}</span>
+                                <span>{{ task.due_time.strftime('%H:%M')  }}</span>
+                                <span class="delete"><a href="{{ url_for('delete_task', task_id=task.id) }}">Delete Task</a></span>
                             </p>
                             <hr />
                         {% endif %}
@@ -49,10 +52,11 @@
             </div>
             <div class="completed">
                 <h4>Completed Tasks</h4>
+                <p class="text-muted">Click Task to reinstate it</p>
                 {% if tasks %}
                     {% for task in tasks %}
                         {% if task.completed != False %}
-                            <p class="text-success"><strike><em>{{ task.task_title }}</em></strike></p>
+                            <a href="{{ url_for('reinstate', task_id=task.id) }}" class="text-success"><strike><em>{{ task.task_title }}</em></strike></a>
                         {% endif %}
                     {% endfor %}
                 {% else %}

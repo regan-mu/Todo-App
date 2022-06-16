@@ -43,7 +43,7 @@ class TodoGroup(db.Model):
     description = db.Column(db.Text, nullable=False)
     date_added = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    task = db.relationship('Task', backref='list_tasks', lazy=True)
+    task = db.relationship('Task', backref='list_tasks', lazy=True, cascade="all,delete-orphan")
 
     def __repr__(self):
         return f"User({self.title})"
@@ -154,6 +154,32 @@ def view_todo(todo_id):
 def complete_task(task_id):
     task = Task.query.get(task_id)
     task.completed = True
+    db.session.commit()
+    return redirect(url_for('view_todo', todo_id=task.todo_id))
+
+
+@app.route('/reinstate/<int:task_id>')
+def reinstate(task_id):
+    task = Task.query.get(task_id)
+    task.completed = False
+    db.session.commit()
+    return redirect(url_for('view_todo', todo_id=task.todo_id))
+
+
+@app.route('/delete_list/<int:list_id>')
+@login_required
+def delete_list(list_id):
+    todo_list = TodoGroup.query.get(list_id)
+    db.session.delete(todo_list)
+    db.session.commit()
+    return redirect(url_for('home'))
+
+
+@app.route('/delete_task/<int:task_id>')
+@login_required
+def delete_task(task_id):
+    task = Task.query.get(task_id)
+    db.session.delete(task)
     db.session.commit()
     return redirect(url_for('view_todo', todo_id=task.todo_id))
 
